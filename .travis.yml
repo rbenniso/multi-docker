@@ -15,3 +15,8 @@ after_success:
   - docker build -t rbennison/multi-nginx ./nginx
   - docker build -t rbennison/multi-server ./server
   - docker build -t rbennison/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push rbennison/multi-client
+  - docker push rbennison/multi-nginx
+  - docker push rbennison/multi-server
+  - docker push rbennison/multi-worker
